@@ -1,0 +1,24 @@
+.pic-con{
+
+}
+.pic-con img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.time{
+  font-size: .8em;
+}
+.title{
+  font-weight: 500;
+  font-size: 1.5em;
+}
+.options-btn{
+  border: none;
+  background: none;
+  outline: none;
+}
+button{
+  outline: none;
+}

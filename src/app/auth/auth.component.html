@@ -1,0 +1,62 @@
+<router-outlet></router-outlet>
+<div class="container h-100">
+  <div class="row text-center p-4 m-4 h-100">
+    <div class="col align-items-center h-100">
+      <div class="bg-white d-inline-block p-5 rounded mt-4">
+        <h4>{{signIn?"Login": "Register"}}</h4>
+        <p *ngIf="signIn">Don't have an account? <a [routerLink]="['/auth']" [queryParams]="{'signUp': true}">Get One</a></p>
+        <p *ngIf="!signIn">Already have an account? <a [routerLink]="['/auth']">Sign In</a></p>
+        <form [formGroup]="form" (ngSubmit)="signIn?login():register()">
+          <div *ngIf="errorMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <mat-error>
+              {{errorMsg}}
+            </mat-error>
+            <button type="button" class="close"  aria-label="Close" (click)="errorMsg=''">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <p *ngIf="!signIn">
+            <mat-form-field appearance="outline">
+              <mat-label>Username</mat-label>
+              <input type="email" matInput formControlName="username" placeholder="Username">
+              <mat-icon matSuffix>alternate_email</mat-icon>
+              <mat-error *ngIf="form.controls.username.hasError('required')">
+                Username is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Email Address">
+              <mat-icon matSuffix>alternate_email</mat-icon>
+              <!-- <mat-hint>Hint</mat-hint> -->
+              <mat-error *ngIf="form.controls.email.hasError('email') && !form.controls.email.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="form.controls.email.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" >
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="password" placeholder="Secret code">
+              <mat-icon matSuffix>code</mat-icon>
+              <!-- <mat-hint>Hint</mat-hint> -->
+              <mat-error *ngIf="form.controls.password.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <button class="w-100 py-1" type="submit" mat-flat-button color="primary" [disabled]="!form.valid">{{signIn?'Login':'Register'}}</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

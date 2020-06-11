@@ -1,0 +1,11 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Mni Blog</span>
+    <span class="example-spacer"></span>
+
+    <button class="py-1" type="submit" mat-flat-button color="primary"  (click)="openCreatePostModal()">Create Post</button>
+    <span class="example-spacer"></span>
+    <button class="py-1" type="submit" mat-flat-button color="warn" (click)="logout()">Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
